@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prefecture"
+            android:id="@+id/textView"
+            android:layout_margin="8dp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:entries="@array/prefecturesArray"
+            android:layout_margin="8dp" />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            android:id="@+id/button1"
+            android:layout_gravity="center_horizontal"
+            bootstrap:bb_icon_left="fa-hand-o-up"
+            bootstrap:bb_type="info"
+            bootstrapbutton:bb_size="large"
+            bootstrapbutton:bb_roundedCorners="true"
+            android:layout_margin="10dp"
+            android:textSize="20sp"/>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tweet"
+            android:id="@+id/button2"
+            android:layout_gravity="center_horizontal"
+            bootstrap:bb_icon_left="fa-twitter"
+            bootstrap:bb_type="danger"
+            bootstrapbutton:bb_size="large"
+            bootstrapbutton:bb_roundedCorners="true"
+            android:layout_margin="10dp"
+            android:textSize="20sp"/>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/score"
+            android:id="@+id/button3"
+            android:layout_gravity="center_horizontal"
+            bootstrap:bb_icon_left="fa-android"
+            bootstrap:bb_type="success"
+            bootstrapbutton:bb_size="large"
+            bootstrapbutton:bb_roundedCorners="true"
+            android:layout_margin="10dp"
+            android:textSize="20sp"/>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ranking"
+            android:id="@+id/button4"
+            android:layout_gravity="center_horizontal"
+            bootstrap:bb_icon_left="fa-group"
+            bootstrap:bb_type="warning"
+            bootstrapbutton:bb_size="large"
+            bootstrapbutton:bb_roundedCorners="true"
+            android:layout_margin="10dp"
+            android:textSize="20sp"/>
+
+
+    </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        android:gravity="center_vertical|bottom"
+        android:layout_gravity="center_horizontal|bottom">
+    </com.google.android.gms.ads.AdView>
+
+</FrameLayout>

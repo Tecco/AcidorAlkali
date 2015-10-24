@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto">
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/playAgain"
+        android:id="@+id/scoreButton1"
+        bootstrap:bb_icon_right="fa-thumbs-o-up"
+        bootstrap:bb_type="primary"
+        android:layout_gravity="right|bottom"
+        bootstrapbutton:bb_size="large"
+        bootstrapbutton:bb_roundedCorners="true"
+        android:textSize="20sp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone" />
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/goTitle"
+        android:id="@+id/scoreButton2"
+        bootstrap:bb_icon_right="fa-reply"
+        bootstrap:bb_type="danger"
+        android:layout_gravity="left|bottom"
+        bootstrapbutton:bb_size="large"
+        bootstrapbutton:bb_roundedCorners="true"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/result"
+        android:id="@+id/scoreText"
+        android:layout_gravity="center"
+        android:layout_marginBottom="60dp"
+        android:visibility="gone" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        android:layout_gravity="center_horizontal|bottom">
+    </com.google.android.gms.ads.AdView>
+
+    <!-- NendAdjustSizeにtrueを指定します -->
+    <!--<net.nend.android.NendAdView
+        android:id="@+id/nend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        NendApiKey="ee720c83186932f0de8f9f9d06cd05b33a78a2a4"
+        NendSpotId="35517"
+        NendAdjustSize="true"
+        android:layout_gravity="center_horizontal|top"/>-->
+
+</FrameLayout>

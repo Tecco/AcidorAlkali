@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">酸性？アルカリ性？</string>
+	<string name="acid">　酸性　</string>
+	<string name="alkali">アルカリ性</string>
+	<string name="start">挑戦する</string>
+	<string name="gameStart">フリックしてスタート！</string>
+	<string name="tweet">ツイートする</string>
+	<string name="tweetMessage">自慢する</string>
+	<string name="score">個人スコア</string>
+	<string name="scoreMessage">あなたの貢献している地域は</string>
+	<string name="ranking">ランキング</string>
+	<string name="rankingTitle">日本 VS アメリカ ランキング</string>
+	<string name="prefecture">参加地域</string>
+	<string name="accuracyRate">正解率</string>
+	<string name="goTitle">タイトルへ</string>
+	<string name="playAgain">もう一度</string>
+	<string name="correct">正解</string>
+	<string name="incorrect">不正解</string>
+	<string name="result">結果:</string>
+	<string name="warning">警告！</string>
+	<string name="nowLoading">サーバーに接続しています...</string>
+	<string name="warningMessage">地域を変更すると、スコアは0からやり直しです！理解しましたか？</string>
+
+    <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
+    <string name="banner_ad_unit_id">ca-app-pub-7287685278318574/9152320242</string>
+
+    <!--酸性 55-->
+	<string-array name="acidArray">
+        <item>FIN</item>
+        <item>豚肉</item>
+        <item>牛肉</item>
+        <item>鶏肉</item>
+        <item>馬肉</item>
+        <item>ハム</item>
+        <item>ソーセージ</item>
+        <item>チーズ</item>
+        <item>バター</item>
+        <item>卵黄</item>
+        <item>まぐろ</item>
+        <item>サンマ</item>
+        <item>イワシ</item>
+        <item>サケ</item>
+        <item>ウナギ</item>
+        <item>牡蠣</item>
+        <item>タコ</item>
+        <item>エビ</item>
+        <item>カニ</item>
+        <item>イクラ</item>
+        <item>ウニ</item>
+        <item>米</item>
+        <item>小麦粉</item>
+        <item>そらまめ</item>
+        <item>ピーナッツ</item>
+        <item>日本酒</item>
+        <item>ビール</item>
+        <item>パン</item>
+        <item>ブルーベリー</item>
+        <item>クランベリー</item>
+        <item>チョコレート</item>
+        <item>ビスケット</item>
+        <item>ケチャップ</item>
+        <item>マヨネーズ</item>
+        <item>マスタード</item>
+        <item>クリーム</item>
+        <item>ヨーグルト</item>
+        <item>エンバク</item>
+        <item>バッファロー</item>
+        <item>鴨肉</item>
+        <item>フムス</item>
+        <item>ポップコーン</item>
+        <item>テンペ</item>
+        <item>ヘーゼルナッツ</item>
+        <item>ピーナッツ</item>
+        <item>ハルヴァ</item>
+        <item>メープルシロップ</item>
+        <item>ハチミツ</item>
+        <item>マッシュルーム</item>
+        <item>コーヒー</item>
+        <item>ワイン</item>
+        <item>トウモロコシ</item>
+        <item>シリアル</item>
+        <item>ココア</item>
+        <item>炭酸水</item>
+        <item>マカロニ</item>
+	</string-array>
+
+    <!--アルカリ 70-->
+    <string-array name="alkaliArray">
+        <item>牛乳</item>
+        <item>卵白</item>
+        <item>大豆</item>
+        <item>小豆</item>
+        <item>インゲン</item>
+        <item>昆布</item>
+        <item>わかめ</item>
+        <item>ほうれん草</item>
+        <item>キャベツ</item>
+        <item>もやし</item>
+        <item>ブロッコリー</item>
+        <item>ネギ</item>
+        <item>大根</item>
+        <item>にんじん</item>
+        <item>ゴボウ</item>
+        <item>カボチャ</item>
+        <item>ナス</item>
+        <item>キュウリ</item>
+        <item>タロイモ</item>
+        <item>じゃがいも</item>
+        <item>みかん</item>
+        <item>ブドウ</item>
+        <item>バナナ</item>
+        <item>いちご</item>
+        <item>りんご</item>
+        <item>松茸</item>
+        <item>しいたけ</item>
+        <item>しめじ</item>
+        <item>緑茶</item>
+        <item>豆腐</item>
+        <item>豆乳</item>
+        <item>ごま</item>
+        <item>トマト</item>
+        <item>わさび</item>
+        <item>レモン</item>
+        <item>さくらんぼ</item>
+        <item>スイカ</item>
+        <item>紅茶</item>
+        <item>カレー</item>
+        <item>岩塩</item>
+        <item>みそ</item>
+        <item>醤油</item>
+        <item>ココナッツ</item>
+        <item>オリーブオイル</item>
+        <item>アボカド</item>
+        <item>イチジク</item>
+        <item>レンズマメ</item>
+        <item>アーモンド</item>
+        <item>松の実</item>
+        <item>ルタバガ</item>
+        <item>カブ</item>
+        <item>ステビア</item>
+        <item>アルファルファ</item>
+        <item>バジル</item>
+        <item>チンゲンサイ</item>
+        <item>カリフラワー</item>
+        <item>コリアンダー</item>
+        <item>ニンニク</item>
+        <item>アスパラガス</item>
+        <item>セロリ</item>
+        <item>エンダイブ</item>
+        <item>レタス</item>
+        <item>タマネギ</item>
+        <item>ズッキーニ</item>
+        <item>メロン</item>
+        <item>パパイヤ</item>
+        <item>エンドウ</item>
+        <item>梨</item>
+        <item>マンゴー</item>
+        <item>桃</item>
+    </string-array>
+
+
+    <string-array name="prefecturesArray">
+        <item>UNKNOWN</item>
+        <item>北海道</item>
+        <item>青森</item>
+        <item>岩手</item>
+        <item>宮城</item>
+        <item>秋田</item>
+        <item>山形</item>
+        <item>福島</item>
+        <item>東京</item>
+        <item>埼玉</item>
+        <item>千葉</item>
+        <item>神奈川</item>
+        <item>茨城</item>
+        <item>栃木</item>
+        <item>群馬</item>
+        <item>新潟</item>
+        <item>富山</item>
+        <item>石川</item>
+        <item>福井</item>
+        <item>山梨</item>
+        <item>長野</item>
+        <item>岐阜</item>
+        <item>静岡</item>
+        <item>愛知</item>
+        <item>大阪</item>
+        <item>京都</item>
+        <item>三重</item>
+        <item>滋賀</item>
+        <item>兵庫</item>
+        <item>奈良</item>
+        <item>和歌山</item>
+        <item>鳥取</item>
+        <item>島根</item>
+        <item>岡山</item>
+        <item>広島</item>
+        <item>山口</item>
+        <item>徳島</item>
+        <item>香川</item>
+        <item>愛媛</item>
+        <item>高知</item>
+        <item>福岡</item>
+        <item>佐賀</item>
+        <item>長崎</item>
+        <item>熊本</item>
+        <item>大分</item>
+        <item>宮崎</item>
+        <item>鹿児島</item>
+        <item>沖縄</item>
+    </string-array>
+
+    <string-array name="prefecturesArray2">
+        <item>UNKNOWN</item>
+        <item>アラバマ</item>
+        <item>アラスカ</item>
+        <item>アリゾナ</item>
+        <item>アーカンソー</item>
+        <item>カリフォルニア</item>
+        <item>コロラド</item>
+        <item>コネチカット</item>
+        <item>デラウェア</item>
+        <item>フロリダ</item>
+        <item>ジョージア</item>
+        <item>ハワイ</item>
+        <item>アイダホ</item>
+        <item>イリノイ</item>
+        <item>インディアナ</item>
+        <item>アイオワ</item>
+        <item>カンザス</item>
+        <item>ケンタッキー</item>
+        <item>ルイジアナ</item>
+        <item>メイン</item>
+        <item>メリーランド</item>
+        <item>マサチューセッツ</item>
+        <item>ミシガン</item>
+        <item>ミネソタ</item>
+        <item>ミシシッピ</item>
+        <item>ミズーリ</item>
+        <item>モンタナ</item>
+        <item>ネブラスカ</item>
+        <item>ネバダ</item>
+        <item>ニューハンプシャー</item>
+        <item>ニュージャージー</item>
+        <item>ニューメキシコ</item>
+        <item>ニューヨーク</item>
+        <item>ノースカロライナ</item>
+        <item>ノースダコタ</item>
+        <item>オハイオ</item>
+        <item>オクラホマ</item>
+        <item>オレゴン</item>
+        <item>ペンシルベニア</item>
+        <item>ロードアイランド</item>
+        <item>サウスカロライナ</item>
+        <item>サウスダコタ</item>
+        <item>テネシー</item>
+        <item>テキサス</item>
+        <item>ユタ</item>
+        <item>バーモント</item>
+        <item>バージニア</item>
+        <item>ワシントン</item>
+        <item>ウェストバージニア</item>
+        <item>ウィスコンシン</item>
+        <item>ワイオミング</item>
+    </string-array>
+
+    <string-array name="prefecturesArray2minus">
+        <item>アラバマ</item>
+        <item>アラスカ</item>
+        <item>アリゾナ</item>
+        <item>アーカンソー</item>
+        <item>カリフォルニア</item>
+        <item>コロラド</item>
+        <item>コネチカット</item>
+        <item>デラウェア</item>
+        <item>フロリダ</item>
+        <item>ジョージア</item>
+        <item>ハワイ</item>
+        <item>アイダホ</item>
+        <item>イリノイ</item>
+        <item>インディアナ</item>
+        <item>アイオワ</item>
+        <item>カンザス</item>
+        <item>ケンタッキー</item>
+        <item>ルイジアナ</item>
+        <item>メイン</item>
+        <item>メリーランド</item>
+        <item>マサチューセッツ</item>
+        <item>ミシガン</item>
+        <item>ミネソタ</item>
+        <item>ミシシッピ</item>
+        <item>ミズーリ</item>
+        <item>モンタナ</item>
+        <item>ネブラスカ</item>
+        <item>ネバダ</item>
+        <item>ニューハンプシャー</item>
+        <item>ニュージャージー</item>
+        <item>ニューメキシコ</item>
+        <item>ニューヨーク</item>
+        <item>ノースカロライナ</item>
+        <item>ノースダコタ</item>
+        <item>オハイオ</item>
+        <item>オクラホマ</item>
+        <item>オレゴン</item>
+        <item>ペンシルベニア</item>
+        <item>ロードアイランド</item>
+        <item>サウスカロライナ</item>
+        <item>サウスダコタ</item>
+        <item>テネシー</item>
+        <item>テキサス</item>
+        <item>ユタ</item>
+        <item>バーモント</item>
+        <item>バージニア</item>
+        <item>ワシントン</item>
+        <item>ウェストバージニア</item>
+        <item>ウィスコンシン</item>
+        <item>ワイオミング</item>
+    </string-array>
+    
+</resources>

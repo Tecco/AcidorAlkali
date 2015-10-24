@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Acid or Alkali</string>
+    <string name="acid">Acid</string>
+    <string name="alkali">Alkali</string>
+    <string name="start">Start</string>
+    <string name="gameStart">Start by Swipe!!</string>
+    <string name="tweet">Tweet</string>
+    <string name="tweetMessage">Tweet</string>
+    <string name="score">Score</string>
+    <string name="scoreMessage">Area that your contribution to is</string>
+    <string name="ranking">Ranking</string>
+    <string name="rankingTitle">USA and Japan Ranking</string>
+    <string name="prefecture">State</string>
+    <string name="accuracyRate">Accuracy rate</string>
+    <string name="goTitle">Back to Title</string>
+    <string name="playAgain">Play again</string>
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+    <string name="result">Result:</string>
+    <string name="warning">Warning!!</string>
+    <string name="nowLoading">Now Loading...</string>
+    <string name="warningMessage">Score starts from 0 when you change the state! Did you understand?</string>
+
+    <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
+    <string name="banner_ad_unit_id">ca-app-pub-7287685278318574/9152320242</string>
+
+    <!--酸性:55-->
+    <string-array name="acidArray">
+        <item>FIN</item>
+        <item>Pork</item>
+        <item>Beef</item>
+        <item>Chicken</item>
+        <item>Horsemeat</item>
+        <item>Ham</item>
+        <item>Sausage</item>
+        <item>Cheese</item>
+        <item>Butter</item>
+        <item>Egg yolk</item>
+        <item>Tuna</item>
+        <item>Saury</item>
+        <item>Sardine</item>
+        <item>Salmon</item>
+        <item>Eel</item>
+        <item>Oyster</item>
+        <item>Octopus</item>
+        <item>Shrimp</item>
+        <item>Crab</item>
+        <item>Salmon roe</item>
+        <item>Sea urchin</item>
+        <item>Rice</item>
+        <item>Flour</item>
+        <item>Broad Beans</item>
+        <item>Peanut</item>
+        <item>Sake</item>
+        <item>Beer</item>
+        <item>Bread</item>
+        <item>Blueberry</item>
+        <item>Cranberry</item>
+        <item>Chocolate</item>
+        <item>Biscuit</item>
+        <item>Ketchup</item>
+        <item>Mayonnaise</item>
+        <item>Mustard</item>
+        <item>Cream</item>
+        <item>Yoghurt</item>
+        <item>Oats</item>
+        <item>Buffalo</item>
+        <item>Duck</item>
+        <item>Hummus</item>
+        <item>Popcorn</item>
+        <item>Tempeh</item>
+        <item>Hazelnut</item>
+        <item>Peanuts</item>
+        <item>Halva</item>
+        <item>Maple syrup</item>
+        <item>Honey</item>
+        <item>Mushrooms</item>
+        <item>Coffee</item>
+        <item>Wine</item>
+        <item>Corn</item>
+        <item>Cereal</item>
+        <item>Cocoa</item>
+        <item>Soda</item>
+        <item>Macaroni</item>
+
+    </string-array>
+
+    <!--アルカリ:70-->
+    <string-array name="alkaliArray">
+        <item>Milk</item>
+        <item>Egg white</item>
+        <item>Soybean</item>
+        <item>Red beans</item>
+        <item>Green beans</item>
+        <item>Kelp</item>
+        <item>Seaweed</item>
+        <item>Spinach</item>
+        <item>Cabbage</item>
+        <item>Sprout</item>
+        <item>Broccoli</item>
+        <item>Leek</item>
+        <item>Radish</item>
+        <item>Carrots</item>
+        <item>Burdock</item>
+        <item>Pumpkin</item>
+        <item>Eggplant</item>
+        <item>Cucumber</item>
+        <item>Taro</item>
+        <item>Potato</item>
+        <item>Orange</item>
+        <item>Grapes</item>
+        <item>Banana</item>
+        <item>Strawberry</item>
+        <item>Apple</item>
+        <item>Matsutake</item>
+        <item>Shiitake</item>
+        <item>Shimeji</item>
+        <item>Green tea</item>
+        <item>Tofu</item>
+        <item>Soy milk</item>
+        <item>Sesame</item>
+        <item>Tomato</item>
+        <item>Wasabi</item>
+        <item>Lemon</item>
+        <item>Cherries</item>
+        <item>Watermelon</item>
+        <item>Black tea</item>
+        <item>Curry</item>
+        <item>Rock salt</item>
+        <item>Miso</item>
+        <item>Soy sauce</item>
+        <item>Coconut</item>
+        <item>Olive oil</item>
+        <item>Avocado</item>
+        <item>Figs</item>
+        <item>Lentils</item>
+        <item>Almonds</item>
+        <item>Pine nuts</item>
+        <item>Rutabaga</item>
+        <item>Turnip</item>
+        <item>Stevia</item>
+        <item>Alfalfa</item>
+        <item>Basil</item>
+        <item>Bok choy</item>
+        <item>Cauliflower</item>
+        <item>Cilantro</item>
+        <item>Garlic</item>
+        <item>Asparagus</item>
+        <item>Celery</item>
+        <item>Endive</item>
+        <item>Lettuce</item>
+        <item>Onion</item>
+        <item>Zucchini</item>
+        <item>Cantaloupe</item>
+        <item>Papaya</item>
+        <item>Peas</item>
+        <item>Pear</item>
+        <item>Mango</item>
+        <item>Peach</item>
+
+    </string-array>
+
+    <string-array name="prefecturesArray">
+        <item>UNKNOWN</item>
+        <item>Hokkaido</item>
+        <item>Aomori</item>
+        <item>Iwate</item>
+        <item>Miyagi</item>
+        <item>Akita</item>
+        <item>Yamagata</item>
+        <item>Fukushima</item>
+        <item>Tokyo</item>
+        <item>Saitama</item>
+        <item>Chiba</item>
+        <item>Kanagawa</item>
+        <item>Ibaraki</item>
+        <item>Tochigi</item>
+        <item>Gunma</item>
+        <item>Niigata</item>
+        <item>Toyama</item>
+        <item>Ishikawa</item>
+        <item>Fukui</item>
+        <item>Yamanashi</item>
+        <item>Nagano</item>
+        <item>gifu</item>
+        <item>Shizuoka</item>
+        <item>Aichi</item>
+        <item>Osaka</item>
+        <item>Kyoto</item>
+        <item>Mie</item>
+        <item>Shiga</item>
+        <item>Hyogo</item>
+        <item>Nara</item>
+        <item>Wakayama</item>
+        <item>Tottori</item>
+        <item>Shimane</item>
+        <item>Okayama</item>
+        <item>Hiroshima</item>
+        <item>Yamaguchi</item>
+        <item>Tokushima</item>
+        <item>Kagawa</item>
+        <item>Ehime</item>
+        <item>Kochi</item>
+        <item>Fukuoka</item>
+        <item>Saga</item>
+        <item>Nagasaki</item>
+        <item>Kumamoto</item>
+        <item>Oita</item>
+        <item>Miyazaki</item>
+        <item>Kagoshima</item>
+        <item>Okinawa</item>
+    </string-array>
+
+    <string-array name="prefecturesArray2">
+        <item>UNKNOWN</item>
+        <item>Alabama</item>
+        <item>Alaska</item>
+        <item>Arizona</item>
+        <item>Arkansas</item>
+        <item>California</item>
+        <item>Colorado</item>
+        <item>Connecticut</item>
+        <item>Delaware</item>
+        <item>Florida</item>
+        <item>Georgia</item>
+        <item>Hawaii</item>
+        <item>Idaho</item>
+        <item>Illinois</item>
+        <item>Indiana</item>
+        <item>Iowa</item>
+        <item>Kansas</item>
+        <item>Kentucky</item>
+        <item>Louisiana</item>
+        <item>Maine</item>
+        <item>Maryland</item>
+        <item>Massachusetts</item>
+        <item>Michigan</item>
+        <item>Minnesota</item>
+        <item>Mississippi</item>
+        <item>Missouri</item>
+        <item>Montana</item>
+        <item>Nebraska</item>
+        <item>Nevada</item>
+        <item>New Hampshire</item>
+        <item>New Jersey</item>
+        <item>New Mexico</item>
+        <item>New York</item>
+        <item>North Carolina</item>
+        <item>North Dakota</item>
+        <item>Ohio</item>
+        <item>Oklahoma</item>
+        <item>Oregon</item>
+        <item>Pennsylvania</item>
+        <item>Rhode Island</item>
+        <item>South Carolina</item>
+        <item>South Dakota</item>
+        <item>Tennessee</item>
+        <item>Texas</item>
+        <item>Utah</item>
+        <item>Vermont</item>
+        <item>Virginia</item>
+        <item>Washington</item>
+        <item>West Virginia</item>
+        <item>Wisconsin</item>
+        <item>Wyoming</item>
+    </string-array>
+
+    <string-array name="prefecturesArray2minus">
+        <item>Alabama</item>
+        <item>Alaska</item>
+        <item>Arizona</item>
+        <item>Arkansas</item>
+        <item>California</item>
+        <item>Colorado</item>
+        <item>Connecticut</item>
+        <item>Delaware</item>
+        <item>Florida</item>
+        <item>Georgia</item>
+        <item>Hawaii</item>
+        <item>Idaho</item>
+        <item>Illinois</item>
+        <item>Indiana</item>
+        <item>Iowa</item>
+        <item>Kansas</item>
+        <item>Kentucky</item>
+        <item>Louisiana</item>
+        <item>Maine</item>
+        <item>Maryland</item>
+        <item>Massachusetts</item>
+        <item>Michigan</item>
+        <item>Minnesota</item>
+        <item>Mississippi</item>
+        <item>Missouri</item>
+        <item>Montana</item>
+        <item>Nebraska</item>
+        <item>Nevada</item>
+        <item>New Hampshire</item>
+        <item>New Jersey</item>
+        <item>New Mexico</item>
+        <item>New York</item>
+        <item>North Carolina</item>
+        <item>North Dakota</item>
+        <item>Ohio</item>
+        <item>Oklahoma</item>
+        <item>Oregon</item>
+        <item>Pennsylvania</item>
+        <item>Rhode Island</item>
+        <item>South Carolina</item>
+        <item>South Dakota</item>
+        <item>Tennessee</item>
+        <item>Texas</item>
+        <item>Utah</item>
+        <item>Vermont</item>
+        <item>Virginia</item>
+        <item>Washington</item>
+        <item>West Virginia</item>
+        <item>Wisconsin</item>
+        <item>Wyoming</item>
+    </string-array>
+
+
+</resources>

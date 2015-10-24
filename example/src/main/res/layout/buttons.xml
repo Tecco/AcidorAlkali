@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/left"
+            android:layout_margin="10dp"
+            android:text="@string/acid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bootstrapbutton:bb_size="large"
+            bootstrapbutton:bb_roundedCorners="true"
+            android:textSize="20sp" />
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/right"
+            android:layout_margin="10dp"
+            android:text="@string/alkali"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            bootstrapbutton:bb_size="large"
+            bootstrapbutton:bb_roundedCorners="true"
+            android:textSize="20sp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/gameStart"
+            android:id="@+id/timerText"
+            android:layout_gravity="center_horizontal|top" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/answerMark"
+            android:layout_gravity="center_horizontal"
+            android:textSize="120sp" />
+    </LinearLayout>
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="酸"
+        android:id="@+id/acidText"
+        android:layout_gravity="left|center_vertical" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="アル"
+        android:id="@+id/alkaliText"
+        android:layout_gravity="right|center_vertical" />-->
+
+</FrameLayout>
