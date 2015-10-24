@@ -112,9 +112,7 @@ public class MyActivity extends Activity {
             QAl.add(AllAl.get(0));
         }
 
-
         arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, QAl );
-
 
         flingContainer.setAdapter(arrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {

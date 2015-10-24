@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/icon"
+        android:id="@+id/ranking_icon"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:src="@drawable/ic_launcher"
@@ -12,10 +12,10 @@
     </ImageView>
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/ranking_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@+id/label" >
+        android:text="@+id/ranking_label" >
     </TextView>
 
 </LinearLayout>

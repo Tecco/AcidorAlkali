@@ -26,8 +26,8 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
-        TextView textView = (TextView) rowView.findViewById(R.id.label);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
+        TextView textView = (TextView) rowView.findViewById(R.id.ranking_label);
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.ranking_icon);
 
         // Change the icon for USA and JAPAN
         String s = values[position];
