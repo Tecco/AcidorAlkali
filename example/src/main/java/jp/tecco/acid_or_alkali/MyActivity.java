@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -144,13 +143,13 @@ public class MyActivity extends Activity {
                 if (pHJudge(a) == 1) {
                     //makeToast(MyActivity.this, "True");
                     answerMark.setText("○");
-                    answerMark.setTextColor(Color.RED);
+                    answerMark.setTextColor(getResources().getColor(R.color.true_answer_color));
                     answerMark.startAnimation(fadeIn);
 
                     trueAnswerNum++;
                 } else {
                     answerMark.setText("×");
-                    answerMark.setTextColor(Color.BLACK);
+                    answerMark.setTextColor(getResources().getColor(R.color.false_answer_color));
                     answerMark.startAnimation(fadeIn);
                     //makeToast(MyActivity.this, "False");
                 }
@@ -164,13 +163,13 @@ public class MyActivity extends Activity {
 
                 if (pHJudge(a) == 2) {
                     answerMark.setText("○");
-                    answerMark.setTextColor(Color.RED);
+                    answerMark.setTextColor(getResources().getColor(R.color.true_answer_color));
                     answerMark.startAnimation(fadeIn);
                     //makeToast(MyActivity.this, "True");
                     trueAnswerNum++;
                 } else {
                     answerMark.setText("×");
-                    answerMark.setTextColor(Color.BLACK);
+                    answerMark.setTextColor(getResources().getColor(R.color.false_answer_color));
                     answerMark.startAnimation(fadeIn);
                     //makeToast(MyActivity.this, "False");
                 }
@@ -289,16 +288,15 @@ public class MyActivity extends Activity {
 
     public void createTimer(){
 
-
         //タイマー時間と更新感覚
         countDownTimer = new CountDownTimer(2000, 20) {
 
             // カウントダウン処理
             public void onTick(long millisUntilFinished) {
                 if (millisUntilFinished < 1000) {
-                    timerText.setTextColor(Color.RED);
+                    timerText.setTextColor(getResources().getColor(R.color.true_answer_color));
                 } else {
-                    timerText.setTextColor(Color.BLACK);
+                    timerText.setTextColor(getResources().getColor(R.color.false_answer_color));
                 }
                 timerText.setText(String.valueOf(millisUntilFinished));
             }
