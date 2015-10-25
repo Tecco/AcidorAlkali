@@ -1,9 +1,11 @@
-package jp.tecco.acid_or_alkali;
+package jp.tecco.acid_or_alkali.utils;
 
 import android.app.Application;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
+
+import jp.tecco.acid_or_alkali.R;
 
 /**
  * Created by makotonishimoto on 2015/06/03.

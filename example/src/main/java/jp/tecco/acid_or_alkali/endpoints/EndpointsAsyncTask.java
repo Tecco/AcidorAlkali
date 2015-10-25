@@ -1,4 +1,4 @@
-package jp.tecco.acid_or_alkali;
+package jp.tecco.acid_or_alkali.endpoints;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,11 +18,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import jp.tecco.acid_or_alkali.R;
+import jp.tecco.acid_or_alkali.core.RankingActivity;
+
 
 /**
  * Created by makotonishimoto on 2015/05/13.
  */
-class EndpointsAsyncTask extends AsyncTask<Void, Void, List<Quote>> {
+public class EndpointsAsyncTask extends AsyncTask<Void, Void, List<Quote>> {
     private static com.appspot.acidoralkariranking.quoteEndpoint.QuoteEndpoint myApiService = null;
     private Context context;
     private int quoteMode;
@@ -30,7 +33,7 @@ class EndpointsAsyncTask extends AsyncTask<Void, Void, List<Quote>> {
     private int trueAnswerNum;
     private ProgressDialog pg;
 
-    EndpointsAsyncTask(Context context, int quoteMode, long prefecturesId, int trueAnswerNum, ProgressDialog pg) {
+    public EndpointsAsyncTask(Context context, int quoteMode, long prefecturesId, int trueAnswerNum, ProgressDialog pg) {
         this.context = context;
         this.quoteMode = quoteMode;
         this.prefecturesId = prefecturesId;

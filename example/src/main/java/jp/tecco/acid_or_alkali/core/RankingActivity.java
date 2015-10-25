@@ -1,4 +1,4 @@
-package jp.tecco.acid_or_alkali;
+package jp.tecco.acid_or_alkali.core;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import jp.tecco.acid_or_alkali.data.MySimpleArrayAdapter;
+import jp.tecco.acid_or_alkali.R;
 
 /**
  * Created by makotonishimoto on 2015/05/23.

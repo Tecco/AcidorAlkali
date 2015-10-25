@@ -1,4 +1,4 @@
-package jp.tecco.acid_or_alkali;
+package jp.tecco.acid_or_alkali.core;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -29,13 +30,15 @@ import java.util.Random;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import jp.tecco.acid_or_alkali.R;
+import jp.tecco.acid_or_alkali.endpoints.EndpointsAsyncTask;
 
 /**
  * Created by makotonishimoto on 2015/05/10.
  */
 public class TitleActivity extends Activity {
 
-    @InjectView(R.id.title_ranking_button)com.beardedhen.androidbootstrap.BootstrapButton rankingButton;
+    @InjectView(R.id.title_ranking_button)BootstrapButton rankingButton;
     @InjectView(R.id.spinner)Spinner spinner;
     @InjectView(R.id.textView)TextView prefectureText;
 
@@ -49,11 +52,12 @@ public class TitleActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.title);
 
+        //TODO: Butterknife古くない？
         ButterKnife.inject(this);
 
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdView adView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        adView.loadAd(adRequest);
 
         //Google Analyticsコード
         GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);

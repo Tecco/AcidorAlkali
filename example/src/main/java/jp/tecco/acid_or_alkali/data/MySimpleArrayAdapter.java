@@ -1,4 +1,4 @@
-package jp.tecco.acid_or_alkali;
+package jp.tecco.acid_or_alkali.data;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import jp.tecco.acid_or_alkali.R;
 
 /**
  * Created by makotonishimoto on 2015/05/29.

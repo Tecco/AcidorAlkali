@@ -1,4 +1,4 @@
-package jp.tecco.acid_or_alkali;
+package jp.tecco.acid_or_alkali.core;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,6 +24,8 @@ import java.util.Random;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import jp.tecco.acid_or_alkali.endpoints.EndpointsAsyncTask;
+import jp.tecco.acid_or_alkali.R;
 
 
 public class MyActivity extends Activity {
@@ -54,6 +56,8 @@ public class MyActivity extends Activity {
     //スコアが2回でないようにするフラグ
     private boolean scoreFlag = true;
 
+    private MyPreferences mPref;
+
     AlphaAnimation fadeIn;
     AlphaAnimation fadeOut;
 
@@ -63,6 +67,7 @@ public class MyActivity extends Activity {
         setContentView(R.layout.activity_my);
         ButterKnife.inject(this);
 
+        mPref = new MyPreferences(this);
         createTimer();
 
         //効果音の作成 lollipopがバグるので却下
@@ -85,8 +90,6 @@ public class MyActivity extends Activity {
         //fadeOut.setStartOffset(4200+fadeIn.getStartOffset());
 
         //TODO: ちょっと動かして連打すると落ちる
-
-        //酸性とアルカリ性を分ける　スコア表出す　国別統計とかならおもろいかも
 
         //酸性のリスト
         String[] preAcAl = getResources().getStringArray(R.array.acidArray);
@@ -137,23 +140,20 @@ public class MyActivity extends Activity {
 
             @Override
             public void onLeftCardExit(Object dataObject) {
-                String a = dataObject.toString();
+                String data = dataObject.toString();
                 //makeToast(MyActivity.this, a);
 
-                if (pHJudge(a) == 1) {
+                if (pHJudge(data) == 1) {
                     //makeToast(MyActivity.this, "True");
                     answerMark.setText("○");
                     answerMark.setTextColor(getResources().getColor(R.color.true_answer_color));
-                    answerMark.startAnimation(fadeIn);
-
                     trueAnswerNum++;
                 } else {
                     answerMark.setText("×");
                     answerMark.setTextColor(getResources().getColor(R.color.false_answer_color));
-                    answerMark.startAnimation(fadeIn);
                     //makeToast(MyActivity.this, "False");
                 }
-
+                answerMark.startAnimation(fadeIn);
             }
 
             @Override
@@ -164,16 +164,12 @@ public class MyActivity extends Activity {
                 if (pHJudge(a) == 2) {
                     answerMark.setText("○");
                     answerMark.setTextColor(getResources().getColor(R.color.true_answer_color));
-                    answerMark.startAnimation(fadeIn);
-                    //makeToast(MyActivity.this, "True");
                     trueAnswerNum++;
                 } else {
                     answerMark.setText("×");
                     answerMark.setTextColor(getResources().getColor(R.color.false_answer_color));
-                    answerMark.startAnimation(fadeIn);
-                    //makeToast(MyActivity.this, "False");
                 }
-
+                answerMark.startAnimation(fadeIn);
 
                 //new EndpointsAsyncTask().execute(new Pair<Context, String>(MyActivity.this, "Manfred"));
             }
@@ -185,10 +181,13 @@ public class MyActivity extends Activity {
 
                     final SharedPreferences pref = MyActivity.this.getSharedPreferences("pref", MODE_PRIVATE);
                     //現在の正解数、不正解数を取得
-                    int preTrueAnswerNum = pref.getInt("trueAnswerNum", 0);
-                    int preFalseAnswerNum = pref.getInt("falseAnswerNum", 0);
+                    //int preTrueAnswerNum = pref.getInt("trueAnswerNum", 0);
+                    //int preFalseAnswerNum = pref.getInt("falseAnswerNum", 0);
 
-                    prefecturesId = pref.getLong("prefectureId", 0);
+                    int preTrueAnswerNum = mPref.getTrueAnswerNum();
+                    int preFalseAnswerNum = mPref.getFalseAnswerNum();
+
+                    prefecturesId = mPref.getPrefecturesId();
                     /*
                     * 　context
                     * 　mode(0: 取得, 1: 更新)
@@ -198,8 +197,8 @@ public class MyActivity extends Activity {
                     new EndpointsAsyncTask(MyActivity.this, 1, prefecturesId, trueAnswerNum, null).execute();
 
                     Editor editor = pref.edit();
-                    editor.putInt("trueAnswerNum", preTrueAnswerNum + trueAnswerNum);
-                    editor.putInt("falseAnswerNum", preFalseAnswerNum + (10 - trueAnswerNum));
+                    mPref.putTrueAnswerNum(preTrueAnswerNum + trueAnswerNum);
+                    mPref.putFalseAnswerNum(preFalseAnswerNum + (10 - trueAnswerNum));
                     editor.commit();
 
                     finish();
@@ -212,21 +211,12 @@ public class MyActivity extends Activity {
 
                     displayInterstitial();
 
-
-                /*QAl.add("XML ".concat(String.valueOf(i)));
-                arrayAdapter.notifyDataSetChanged();
-                Log.d("LIST", "notified");
-                i++;*/
-
                 }
             }
 
             @Override
             public void onScroll(float scrollProgressPercent) {
                 //TODO: 一旦コメントアウトしておく。端にある判定部分のことだと思う
-                //View view = flingContainer.getSelectedView();
-                //view.findViewById(R.id.item_swipe_right_indicator).setAlpha(scrollProgressPercent < 0 ? -scrollProgressPercent : 0);
-                //view.findViewById(R.id.item_swipe_left_indicator).setAlpha(scrollProgressPercent > 0 ? scrollProgressPercent : 0);
             }
 
             // インタースティシャルを表示する準備ができたら、displayInterstitial() を呼び出す。
@@ -249,13 +239,9 @@ public class MyActivity extends Activity {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
                 //Timer処理のとき使いそう
-                //String a = dataObject.toString();
                 //makeToast(MyActivity.this, dataObject.toString());
             }
         });
-
-
-
 
     }
 
@@ -274,12 +260,7 @@ public class MyActivity extends Activity {
     }
 
     @OnClick(R.id.right)
-    public void right() {
-        /**
-         * Trigger the right event manually.
-         */
-        flingContainer.getTopCardListener().selectRight();
-    }
+    public void right() { flingContainer.getTopCardListener().selectRight(); }
 
     @OnClick(R.id.left)
     public void left() {
@@ -303,23 +284,16 @@ public class MyActivity extends Activity {
 
             // カウントが0になった時の処理
             public void onFinish() {
-
-
                 //タイムアップ時に0を代入
                 timerText.setText(String.valueOf(0));
 
                 String cardText = flingContainer.getTopCardListener().getDataobject();
-
-
                 if(pHJudge(cardText) == 1){
                     flingContainer.getTopCardListener().selectRight();
                 }else{
                     flingContainer.getTopCardListener().selectLeft();
                 }
-
             }
         };
     }
-
-
 }

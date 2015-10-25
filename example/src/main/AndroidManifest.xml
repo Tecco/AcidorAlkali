@@ -18,7 +18,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".TitleActivity"
+            android:name=".core.TitleActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,15 +27,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MyActivity"
+            android:name=".core.MyActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".ScoreActivity"
+            android:name=".core.ScoreActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".RankingActivity"
+            android:name=".core.RankingActivity"
             android:label="@string/app_name" >
         </activity>
 
