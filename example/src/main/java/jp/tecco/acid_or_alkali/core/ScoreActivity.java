@@ -10,7 +10,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -35,9 +36,7 @@ public class ScoreActivity extends Activity{
     @InjectView(R.id.scoreButton1)com.beardedhen.androidbootstrap.BootstrapButton scoreButton1;
     @InjectView(R.id.scoreButton2)com.beardedhen.androidbootstrap.BootstrapButton scoreButton2;
 
-    //フェードインアニメーションの準備する(1,0)フェードアウト、(0,1)フェードイン
-    private AlphaAnimation fadein;
-    //private InterstitialAd interstitial;
+    Animation fadein;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +45,14 @@ public class ScoreActivity extends Activity{
 
         ButterKnife.inject(this);
 
+        fadein = AnimationUtils.loadAnimation(this, R.anim.fadein);
+
         scoreButton1 = (com.beardedhen.androidbootstrap.BootstrapButton) findViewById(R.id.scoreButton1);
         scoreButton2 = (com.beardedhen.androidbootstrap.BootstrapButton) findViewById(R.id.scoreButton2);
-        fadein = new AlphaAnimation(0, 1);
-        fadein.setDuration(500);
 
-        //TODO:バナー広告の実装
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
-        //TODO:3回に1回くらいインタースティシャル広告の実装
-        //ここに来る前に実装した
-        //interstitial.show();
-
 
         Intent intent = getIntent();
         int trueAnswerNum = intent.getIntExtra("trueAnswerNum", 0);
@@ -117,8 +110,6 @@ public class ScoreActivity extends Activity{
     @OnClick(R.id.scoreButton2)
     void goTitle() {
         finish();
-        //Intent intent = new Intent(this, TitleActivity.class);
-        //startActivity(intent);
     }
 
     private final Runnable scoreShow = new Runnable() {

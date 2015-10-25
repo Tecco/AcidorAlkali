@@ -36,51 +36,34 @@ public class RankingActivity extends Activity {
         Collections.sort(scoreList);
         Collections.reverse(scoreList);
 
-        //String[] prefectureList = getResources().getStringArray(R.array.prefecturesArray);
-        String[] hogeList = (String[])scoreList.toArray(new String[0]);
+        String[] scoreArray = scoreList.toArray(new String[0]);
 
-
-        MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, hogeList);
-
-        // アイテムを追加します
-        /*for(int i = 0 ; i < scoreList.size() ; i ++){
-            adapter.add(scoreList.get(i));
-        }*/
-
+        MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, scoreArray);
 
         //TODO: ランキング用のソート
 
         ListView listView = (ListView) findViewById(R.id.rankingList);
-        // アダプターを設定します
         listView.setAdapter(adapter);
 
-        // リストビューのアイテムがクリックされた時に呼び出されるコールバックリスナーを登録します
+        //TODO: クリック処理追加するなら・・・
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                ListView listView = (ListView) parent;
-                // クリックされたアイテムを取得します
-                String item = (String) listView.getItemAtPosition(position);
+                //ListView listView = (ListView) parent;
+                //String item = (String) listView.getItemAtPosition(position);
             }
         });
-        // リストビューのアイテムが選択された時に呼び出されるコールバックリスナーを登録します
         listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                ListView listView = (ListView) parent;
-                // 選択されたアイテムを取得します
-                String item = (String) listView.getSelectedItem();
+                //ListView listView = (ListView) parent;
+                //String item = (String) listView.getSelectedItem();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-
-
-
-
     }
 }

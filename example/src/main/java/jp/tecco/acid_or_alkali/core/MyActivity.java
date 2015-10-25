@@ -150,8 +150,8 @@ public class MyActivity extends Activity {
                     * */
                     new EndpointsAsyncTask(MyActivity.this, 1, prefecturesId, trueAnswerNum, null).execute();
 
-                    mPref.putTrueAnswerNum(preTrueAnswerNum + trueAnswerNum).apply();
-                    mPref.putFalseAnswerNum(preFalseAnswerNum + (10 - trueAnswerNum)).apply();
+                    mPref.edit().putTrueAnswerNum(preTrueAnswerNum + trueAnswerNum).apply();
+                    mPref.edit().putFalseAnswerNum(preFalseAnswerNum + (10 - trueAnswerNum)).apply();
 
                     finish();
 

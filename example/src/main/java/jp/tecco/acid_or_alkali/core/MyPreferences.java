@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
  * Created by makotonishimoto on 2015/10/25.
  */
 public class MyPreferences {
-    public static final String DEFAULT_NAME = "MyPref";
+    public static final String DEFAULT_NAME = "pref";
     private SharedPreferences mPref;
     private SharedPreferences.Editor mEditor;
 
