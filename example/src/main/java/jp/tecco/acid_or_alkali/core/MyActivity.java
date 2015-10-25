@@ -6,7 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class MyActivity extends Activity {
 
     private ArrayAdapter<String> arrayAdapter;
     private CountDownTimer countDownTimer;
+    private ArrayManager mArrayManager;
 
     public InterstitialAd interstitial;
 
@@ -48,7 +50,6 @@ public class MyActivity extends Activity {
 
     private MyPreferences mPref;
 
-    AlphaAnimation fadeIn;
     //AlphaAnimation fadeOut;
 
     @Override
@@ -58,6 +59,8 @@ public class MyActivity extends Activity {
         ButterKnife.inject(this);
 
         mPref = new MyPreferences(this);
+        mArrayManager = new ArrayManager(this, getResources().getStringArray(R.array.acidArray), getResources().getStringArray(R.array.alkaliArray));
+
         createTimer();
 
         //効果音の作成 lollipopがバグるので却下
@@ -72,33 +75,28 @@ public class MyActivity extends Activity {
         // インタースティシャルの読み込みを開始する。
         interstitial.loadAd(adRequestInter);
 
-        fadeIn = new AlphaAnimation( 1.0f , 0.0f );
-        //fadeOut = new AlphaAnimation(0.0f , 1.0f );
-
-        fadeIn.setDuration(600);
-        fadeIn.setFillAfter(true);
-        //fadeOut.setStartOffset(4200+fadeIn.getStartOffset());
+        final Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fadein);
 
         //TODO: ちょっと動かして連打すると落ちる
 
-        ArrayManager am = new ArrayManager(this, getResources().getStringArray(R.array.acidArray), getResources().getStringArray(R.array.alkaliArray));
-        final ArrayList<String> QAl = am.getCombinedList();
+        final ArrayList<String> combAl = mArrayManager.getCombinedList();
+        final ArrayList<String> randomCombAl = mArrayManager.randomiseList(combAl);
 
-        arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, QAl );
+        arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.card_text, randomCombAl);
 
         flingContainer.setAdapter(arrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
                 //最初のタイミングではcardTextが生成されていない
-                cardText = (TextView) findViewById(R.id.helloText);
+                cardText = (TextView) findViewById(R.id.card_text);
 
                 //めくったタイミングで1回ずつ飛んでいるイベント
                 // this is the simplest way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
 
                 try {
-                    QAl.remove(0);
+                    randomCombAl.remove(0);
                     arrayAdapter.notifyDataSetChanged();
 
                     countDownTimer.cancel();
@@ -111,27 +109,23 @@ public class MyActivity extends Activity {
             @Override
             public void onLeftCardExit(Object dataObject) {
                 String data = dataObject.toString();
-                //makeToast(MyActivity.this, a);
 
                 if (pHJudge(data) == 1) {
-                    //makeToast(MyActivity.this, "True");
                     answerMark.setText("○");
                     answerMark.setTextColor(getResources().getColor(R.color.true_answer_color));
                     trueAnswerNum++;
                 } else {
                     answerMark.setText("×");
                     answerMark.setTextColor(getResources().getColor(R.color.false_answer_color));
-                    //makeToast(MyActivity.this, "False");
                 }
                 answerMark.startAnimation(fadeIn);
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                String a = dataObject.toString();
-                //makeToast(MyActivity.this, a);
+                String data = dataObject.toString();
 
-                if (pHJudge(a) == 2) {
+                if (pHJudge(data) == 2) {
                     answerMark.setText("○");
                     answerMark.setTextColor(getResources().getColor(R.color.true_answer_color));
                     trueAnswerNum++;
@@ -180,7 +174,7 @@ public class MyActivity extends Activity {
 
             @Override
             public void onScroll(float scrollProgressPercent) {
-                //TODO: 一旦コメントアウトしておく。端にある判定部分のことだと思う
+
             }
 
             // インタースティシャルを表示する準備ができたら、displayInterstitial() を呼び出す。
@@ -197,13 +191,11 @@ public class MyActivity extends Activity {
             }
         });
 
-
         // Optionally add an OnItemClickListener
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
                 //Timer処理のとき使いそう
-                //makeToast(MyActivity.this, dataObject.toString());
             }
         });
 
@@ -214,11 +206,10 @@ public class MyActivity extends Activity {
     }
 
     private int pHJudge(String val){
-        ArrayManager am = new ArrayManager(this, getResources().getStringArray(R.array.acidArray), getResources().getStringArray(R.array.alkaliArray));
         int pH = 0;
-        if(am.getAcidList().contains(val)) {
+        if(mArrayManager.getAcidList().contains(val)) {
             pH = 1;
-        }else if(am.getAlcaliList().contains(val)){
+        }else if(mArrayManager.getAlkaliList().contains(val)){
             pH = 2;
         }
         return pH;
@@ -232,11 +223,9 @@ public class MyActivity extends Activity {
         flingContainer.getTopCardListener().selectLeft();
     }
 
-    public void createTimer(){
-
+    private void createTimer(){
         //タイマー時間と更新感覚
         countDownTimer = new CountDownTimer(2000, 20) {
-
             // カウントダウン処理
             public void onTick(long millisUntilFinished) {
                 if (millisUntilFinished < 1000) {

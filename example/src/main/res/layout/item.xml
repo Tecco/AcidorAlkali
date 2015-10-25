@@ -6,7 +6,7 @@
     android:layout_height="170dp">
 
     <TextView
-        android:id="@+id/helloText"
+        android:id="@+id/card_text"
         android:textSize="40sp"
         android:textColor="@color/white"
         android:background="@color/card_background"
