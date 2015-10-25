@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import jp.tecco.acid_or_alkali.R;
-
 /**
  * Created by makotonishimoto on 2015/05/18.
  */
@@ -37,6 +36,7 @@ public class ScoreActivity extends Activity{
     @InjectView(R.id.scoreButton2)com.beardedhen.androidbootstrap.BootstrapButton scoreButton2;
 
     Animation fadein;
+    private MyPreferences mPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +46,10 @@ public class ScoreActivity extends Activity{
         ButterKnife.inject(this);
 
         fadein = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        mPref = new MyPreferences(this);
 
-        scoreButton1 = (com.beardedhen.androidbootstrap.BootstrapButton) findViewById(R.id.scoreButton1);
-        scoreButton2 = (com.beardedhen.androidbootstrap.BootstrapButton) findViewById(R.id.scoreButton2);
+        scoreButton1 = (BootstrapButton) findViewById(R.id.scoreButton1);
+        scoreButton2 = (BootstrapButton) findViewById(R.id.scoreButton2);
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -67,16 +68,12 @@ public class ScoreActivity extends Activity{
         new Handler().postDelayed(scoreShow, 200);
         new Handler().postDelayed(buttonShow, 1600);
 
-        final SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-        int countCreate = pref.getInt("countCreate", 0);
+        int startCount = mPref.getStartCount();
 
-        if (countCreate <= 100){
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putInt("countCreate", countCreate + 1);
-            editor.commit();
-
-            if(countCreate == 100){
-                //端末の言語設定を取得(てす)
+        if (startCount <= 100){
+            mPref.edit().putStartCount(startCount + 1).apply();
+            if(startCount == 100){
+                //TODO: とりあえず言語設定で分岐(ほんとはstringで定義)
                 Locale locale = Locale.getDefault();
                 if(Locale.JAPAN.equals(locale)){
                     createDialog("これが100回目のプレイです！！", "いつもプレイありがとうございます！評価☆5をつけていただけないでしょうか？", "OK", "キャンセル");

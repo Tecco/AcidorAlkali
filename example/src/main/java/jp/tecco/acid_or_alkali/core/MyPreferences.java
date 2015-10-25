@@ -55,4 +55,13 @@ public class MyPreferences {
         mEditor.putInt("prefectureId", value);
         return this;
     }
+
+    public int getStartCount() {
+        return mPref.getInt("startCount", 0);
+    }
+
+    public MyPreferences putStartCount(int value) {
+        mEditor.putInt("startCount", value);
+        return this;
+    }
 }

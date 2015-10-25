@@ -183,7 +183,7 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, List<Quote>> {
 }
 
 
-//intentの受け渡しに使おうとしたけどきつい
+//TODO: なにがしたかったか覚えてない(眠い)
 class Score {
     public int trueAnswerNum;
     public int falseAnswerNum;

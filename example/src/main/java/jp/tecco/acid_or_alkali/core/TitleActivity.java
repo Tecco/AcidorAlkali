@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,7 +44,9 @@ public class TitleActivity extends Activity {
     private Locale locale;
 
     private Tracker tracker;
+    private MyPreferences mPref;
 
+    //TODO: 全体的に長い。まとめたい(眠い)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +54,8 @@ public class TitleActivity extends Activity {
 
         //TODO: Butterknife古くない？
         ButterKnife.inject(this);
+
+        mPref = new MyPreferences(this);
 
         AdView adView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -67,8 +69,7 @@ public class TitleActivity extends Activity {
         //端末の言語設定を取得(てす)
         locale = Locale.getDefault();
 
-        final SharedPreferences pref = TitleActivity.this.getSharedPreferences("pref", MODE_PRIVATE);
-        int prefectureId = pref.getInt("prefectureId", 0);
+        int prefectureId = mPref.getPrefecturesId();
 
         //言語リソースの取得
         res = getResources();
@@ -89,21 +90,15 @@ public class TitleActivity extends Activity {
             spinner.setSelection(prefectureId, false);
         }catch(IndexOutOfBoundsException e){
             //地域、点数の初期化
-            Editor editor = pref.edit();
-            editor.putInt("prefectureId", 0);
-            editor.putInt("trueAnswerNum", 0);
-            editor.putInt("falseAnswerNum", 0);
-
-            editor.commit();
-
+            mPref.edit().putPrefecturesId(0).putTrueAnswerNum(0).putFalseAnswerNum(0).apply();
             Toast.makeText(TitleActivity.this, "Initialize by change language", Toast.LENGTH_LONG).show();
             finish();
         }
         spinner.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View view, MotionEvent motionEvent) {
             if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                int nowTrueAnswerNum = pref.getInt("trueAnswerNum", 0);
-                int nowFalseAnswerNum = pref.getInt("falseAnswerNum", 0);
+                int nowTrueAnswerNum = mPref.getTrueAnswerNum();
+                int nowFalseAnswerNum = mPref.getFalseAnswerNum();
 
                 String warning = res.getString(R.string.warning);
                 String warningMessage = res.getString(R.string.warningMessage);
@@ -124,29 +119,22 @@ public class TitleActivity extends Activity {
                                        int position, long id) {
 
                 //画面起動時に1回、同じものを選択した時には発火しない、違うものを選んだ時は発火する
-                //Toast.makeText(TitleActivity.this, "テスト", Toast.LENGTH_LONG).show();
                 Spinner spinner = (Spinner) parent;
-                // 選択されたアイテムを取得します
                 String item = (String) spinner.getSelectedItem();
-                //preferenceに登録 int positionを保存
-                Editor editor = pref.edit();
                 //地域idの変更
                 if (Locale.JAPAN.equals(locale)) {
-                    editor.putInt("prefectureId", position);
+                    mPref.edit().putPrefecturesId(position).apply();
                 } else {
                     if (position != 0) {
-                        editor.putInt("prefectureId", position + 47);
+                        mPref.edit().putPrefecturesId(position + 47).apply();
                     } else {
-                        editor.putInt("prefectureId", position);
+                        mPref.edit().putPrefecturesId(position).apply();
                     }
                 }
 
                 //正解数、不正解数の初期化
-                editor.putInt("trueAnswerNum", 0);
-                editor.putInt("falseAnswerNum", 0);
-
-                editor.commit();
-
+                mPref.edit().putTrueAnswerNum(0).apply();
+                mPref.edit().putFalseAnswerNum(0).apply();
             }
 
             @Override
@@ -171,11 +159,12 @@ public class TitleActivity extends Activity {
 
     @OnClick(R.id.title_twitter_button)
     void tweet() {
-        SharedPreferences pref = TitleActivity.this.getSharedPreferences("pref", MODE_PRIVATE);
-        float trueAnswerNum = pref.getInt("trueAnswerNum", 0);
-        float falseAnswerNum = pref.getInt("falseAnswerNum", 0);
+        float trueAnswerNum = mPref.getTrueAnswerNum();
+        float falseAnswerNum = mPref.getFalseAnswerNum();
         //地域の取得
-        int prefectureId = pref.getInt("prefectureId", 0);
+        int prefectureId = mPref.getPrefecturesId();
+
+        //TODO: ここ後で整理(眠い)
         String[] prefectureList = getResources().getStringArray(R.array.prefecturesArray);
         String[] prefectureList2 = getResources().getStringArray(R.array.prefecturesArray2minus);
         String[] prefectureList3 = new String[prefectureList.length + prefectureList2.length];
@@ -188,7 +177,7 @@ public class TitleActivity extends Activity {
         String truePercent = "";
         String tweetBody = "";
 
-        //TODO: ランダムで褒め言葉とかけなし言葉をつぶやかせる
+        //TODO: ここらへん煩雑すぐる(けど眠い)
 
         try{
             truePercent = getTruePercent(trueAnswerNum, falseAnswerNum);
@@ -269,13 +258,14 @@ public class TitleActivity extends Activity {
 
     @OnClick(R.id.title_score_button)
     void score() {
-        SharedPreferences pref = TitleActivity.this.getSharedPreferences("pref", MODE_PRIVATE);
-        float trueAnswerNum = pref.getInt("trueAnswerNum", 0);
-        float falseAnswerNum = pref.getInt("falseAnswerNum", 0);
+        //TODO: どっかに同じ処理ある気がする(けど眠い)
+        float trueAnswerNum = mPref.getTrueAnswerNum();
+        float falseAnswerNum = mPref.getFalseAnswerNum();
         String truePercent = "";
         String scoreMessage = "";
         //地域の取得
-        int prefectureId = pref.getInt("prefectureId", 0);
+        int prefectureId = mPref.getPrefecturesId();
+
         String[] prefectureList = getResources().getStringArray(R.array.prefecturesArray);
         String[] prefectureList2 = getResources().getStringArray(R.array.prefecturesArray2minus);
         String[] prefectureList3 = new String[prefectureList.length + prefectureList2.length];
@@ -323,8 +313,6 @@ public class TitleActivity extends Activity {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setCancelable(true);
         progressDialog.show();
-        //Intent intent = new Intent(this, RankingActivity.class);
-        //startActivity(intent);
         /*
         * 　context
         * 　mode(0: 取得, 1: 更新)
