@@ -39,18 +39,15 @@ public class MyActivity extends Activity {
     @InjectView(R.id.timerText)TextView timerText;
     @InjectView(R.id.answerMark)TextView answerMark;
 
-    //cardTextが最初のタイミングで生成されていないため
-    private TextView cardText;
-
     private int trueAnswerNum = 0;
     private long prefecturesId = 0;
 
     //スコアが2回でないようにするフラグ
-    private boolean scoreFlag = true;
+    private boolean scoreShowed = false;
 
     private MyPreferences mPref;
 
-    //AlphaAnimation fadeOut;
+    public enum PH { ACID, ALKALI };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +85,6 @@ public class MyActivity extends Activity {
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
-                //最初のタイミングではcardTextが生成されていない
-                cardText = (TextView) findViewById(R.id.card_text);
-
                 //めくったタイミングで1回ずつ飛んでいるイベント
                 // this is the simplest way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
@@ -110,7 +104,7 @@ public class MyActivity extends Activity {
             public void onLeftCardExit(Object dataObject) {
                 String data = dataObject.toString();
 
-                if (pHJudge(data) == 1) {
+                if (pHJudge(data) == PH.ACID) {
                     answerMark.setText("○");
                     answerMark.setTextColor(getResources().getColor(R.color.true_answer_color));
                     trueAnswerNum++;
@@ -125,7 +119,7 @@ public class MyActivity extends Activity {
             public void onRightCardExit(Object dataObject) {
                 String data = dataObject.toString();
 
-                if (pHJudge(data) == 2) {
+                if (pHJudge(data) == PH.ALKALI) {
                     answerMark.setText("○");
                     answerMark.setTextColor(getResources().getColor(R.color.true_answer_color));
                     trueAnswerNum++;
@@ -141,7 +135,7 @@ public class MyActivity extends Activity {
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // リストが0になったあとの処理
-                if (scoreFlag) {
+                if (!scoreShowed) {
 
                     //現在の正解数、不正解数を取得
                     int preTrueAnswerNum = mPref.getTrueAnswerNum();
@@ -165,7 +159,7 @@ public class MyActivity extends Activity {
                     intent.putExtra("trueAnswerNum", trueAnswerNum);
                     startActivity(intent);
 
-                    scoreFlag = false;
+                    scoreShowed = true;
 
                     displayInterstitial();
 
@@ -205,12 +199,12 @@ public class MyActivity extends Activity {
         Toast.makeText(ctx, s, Toast.LENGTH_SHORT).show();
     }
 
-    private int pHJudge(String val){
-        int pH = 0;
+    private PH pHJudge(String val){
+        PH pH = null;
         if(mArrayManager.getAcidList().contains(val)) {
-            pH = 1;
+            pH = PH.ACID;
         }else if(mArrayManager.getAlkaliList().contains(val)){
-            pH = 2;
+            pH = PH.ALKALI;
         }
         return pH;
     }
@@ -242,7 +236,7 @@ public class MyActivity extends Activity {
                 timerText.setText(String.valueOf(0));
 
                 String cardText = flingContainer.getTopCardListener().getDataobject();
-                if(pHJudge(cardText) == 1){
+                if(pHJudge(cardText) == PH.ACID){
                     flingContainer.getTopCardListener().selectRight();
                 }else{
                     flingContainer.getTopCardListener().selectLeft();
