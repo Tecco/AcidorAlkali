@@ -3,8 +3,6 @@ package jp.tecco.acid_or_alkali.core;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -18,27 +16,19 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import jp.tecco.acid_or_alkali.endpoints.EndpointsAsyncTask;
 import jp.tecco.acid_or_alkali.R;
+import jp.tecco.acid_or_alkali.data.ArrayManager;
+import jp.tecco.acid_or_alkali.endpoints.EndpointsAsyncTask;
 
 
 public class MyActivity extends Activity {
 
-    private ArrayList<String> AcAl;
-    private ArrayList<String> AlAl;
-
-    private ArrayList<String> AllAl = new ArrayList<String>();
-    private ArrayList<String> QAl = new ArrayList<String>();
-
     private ArrayAdapter<String> arrayAdapter;
-    private int i;
-
     private CountDownTimer countDownTimer;
 
     public InterstitialAd interstitial;
@@ -59,7 +49,7 @@ public class MyActivity extends Activity {
     private MyPreferences mPref;
 
     AlphaAnimation fadeIn;
-    AlphaAnimation fadeOut;
+    //AlphaAnimation fadeOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,28 +81,8 @@ public class MyActivity extends Activity {
 
         //TODO: ちょっと動かして連打すると落ちる
 
-        //酸性のリスト
-        String[] preAcAl = getResources().getStringArray(R.array.acidArray);
-        AcAl = new ArrayList<String>(Arrays.asList(preAcAl));
-
-        //アルカリ性のリスト
-        String[] preAlAl = getResources().getStringArray(R.array.alkaliArray);
-        AlAl = new ArrayList<String>(Arrays.asList(preAlAl));
-
-        //allListに結合
-        AllAl.addAll(AcAl);
-        AllAl.addAll(AlAl);
-
-        for(int i = 0 ; i < 10 ; i ++){
-
-            Random r = new Random();
-            int n = r.nextInt(AllAl.size() - 1) + 1;
-
-            QAl.add(AllAl.get(n));
-        }
-        for(int i = 0 ; i < 3 ; i ++){
-            QAl.add(AllAl.get(0));
-        }
+        ArrayManager am = new ArrayManager(this, getResources().getStringArray(R.array.acidArray), getResources().getStringArray(R.array.alkaliArray));
+        final ArrayList<String> QAl = am.getCombinedList();
 
         arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, QAl );
 
@@ -179,11 +149,7 @@ public class MyActivity extends Activity {
                 // リストが0になったあとの処理
                 if (scoreFlag) {
 
-                    final SharedPreferences pref = MyActivity.this.getSharedPreferences("pref", MODE_PRIVATE);
                     //現在の正解数、不正解数を取得
-                    //int preTrueAnswerNum = pref.getInt("trueAnswerNum", 0);
-                    //int preFalseAnswerNum = pref.getInt("falseAnswerNum", 0);
-
                     int preTrueAnswerNum = mPref.getTrueAnswerNum();
                     int preFalseAnswerNum = mPref.getFalseAnswerNum();
 
@@ -196,10 +162,8 @@ public class MyActivity extends Activity {
                     * */
                     new EndpointsAsyncTask(MyActivity.this, 1, prefecturesId, trueAnswerNum, null).execute();
 
-                    Editor editor = pref.edit();
-                    mPref.putTrueAnswerNum(preTrueAnswerNum + trueAnswerNum);
-                    mPref.putFalseAnswerNum(preFalseAnswerNum + (10 - trueAnswerNum));
-                    editor.commit();
+                    mPref.putTrueAnswerNum(preTrueAnswerNum + trueAnswerNum).apply();
+                    mPref.putFalseAnswerNum(preFalseAnswerNum + (10 - trueAnswerNum)).apply();
 
                     finish();
 
@@ -250,10 +214,11 @@ public class MyActivity extends Activity {
     }
 
     private int pHJudge(String val){
+        ArrayManager am = new ArrayManager(this, getResources().getStringArray(R.array.acidArray), getResources().getStringArray(R.array.alkaliArray));
         int pH = 0;
-        if(AcAl.contains(val)) {
+        if(am.getAcidList().contains(val)) {
             pH = 1;
-        }else if(AlAl.contains(val)){
+        }else if(am.getAlcaliList().contains(val)){
             pH = 2;
         }
         return pH;
